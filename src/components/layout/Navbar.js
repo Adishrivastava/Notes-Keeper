@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import NoteContext from '../../contexts/NotesContext';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -76,8 +77,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
 	const classes = useStyles();
-	const { updateSearch } = useContext(NoteContext);
+	const { updateSearch, notes } = useContext(NoteContext);
 	const [Search, setSearch] = useState('');
+
+	useEffect(() => {
+		localStorage.setItem('notes', JSON.stringify(notes));
+		console.log(localStorage.getItem('notes'));
+	}, [notes]);
 
 	return (
 		<div className={classes.root}>

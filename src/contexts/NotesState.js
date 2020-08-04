@@ -12,7 +12,7 @@ function NotesState(props) {
 		currentNote: null,
 		search: '',
 		searched: [],
-		width: 1000,
+		width: window.innerWidth,
 	};
 
 	const [state, dispatch] = useReducer(NotesReducer, initialState);
